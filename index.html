@@ -32,67 +32,79 @@
         nav {
             position: fixed;
             top: 0;
-            left: 0;
             right: 0;
+            height: 100vh;
+            width: 180px;
             background: transparent;
-            padding: 1.5rem 0;
+            padding: 3rem 2rem;
             z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 0.5px solid rgba(113, 201, 206, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .nav-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
         }
 
         .nav-logo {
             font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
             font-weight: 600;
-            color: #71c9ce;
+            color: #213555;
             background: none;
             border: none;
             cursor: pointer;
             padding: 0;
             text-decoration: none;
+            position: fixed;
+            top: 3rem;
+            left: 3rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: flex-end;
         }
 
         .nav-link {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 400;
             color: #5F5E5A;
             background: none;
             border: none;
             cursor: pointer;
             padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
             text-decoration: none;
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '•';
+            position: absolute;
+            right: -1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: #3E5879;
+        }
+
+        .nav-link.active::before,
+        .nav-link:hover::before {
+            opacity: 1;
         }
 
         .nav-link.active {
             font-weight: 500;
-            color: #71c9ce;
-            border-bottom-color: #71c9ce;
+            color: #3E5879;
         }
 
         .nav-link:hover {
-            color: #71c9ce;
+            color: #3E5879;
+            transform: translateX(-5px);
         }
 
         /* Hero Section */
@@ -100,16 +112,164 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 6rem 2rem 4rem;
-            background: linear-gradient(135deg, #e3fdfd 0%, #ffffff 50%, #cbf1f5 100%);
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #F5EFE7 0%, #ffffff 50%, #D8C4B6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Specialization Tag */
+        .specialization-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.8);
+            color: #3E5879;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(62, 88, 121, 0.2);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+            animation-delay: 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Floating Shapes */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape-1 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, rgba(62, 88, 121, 0.3), rgba(216, 196, 182, 0.3));
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(245, 239, 231, 0.5), rgba(216, 196, 182, 0.4));
+            top: 60%;
+            right: 15%;
+            animation-delay: 5s;
+            animation-duration: 25s;
+        }
+
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(62, 88, 121, 0.2), rgba(33, 53, 85, 0.3));
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 10s;
+            animation-duration: 30s;
+        }
+
+        .shape-4 {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(216, 196, 182, 0.4), rgba(245, 239, 231, 0.3));
+            top: 35%;
+            right: 25%;
+            animation-delay: 7s;
+            animation-duration: 22s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translate(20px, -30px) rotate(90deg) scale(1.1);
+            }
+            50% {
+                transform: translate(-15px, 20px) rotate(180deg) scale(0.9);
+            }
+            75% {
+                transform: translate(30px, 15px) rotate(270deg) scale(1.05);
+            }
         }
 
         .hero-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             opacity: 0;
             animation: fadeInUp 0.8s ease forwards;
             animation-delay: 0.2s;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Hero Photo */
+        .hero-photo-link {
+            display: inline-block;
+            text-decoration: none;
+            position: relative;
+            margin: 0 0.3rem;
+            vertical-align: middle;
+        }
+
+        .hero-photo-wrapper {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #3E5879;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(62, 88, 121, 0.3);
+            opacity: 0;
+            transform: scale(0);
+            animation: popOut 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes popOut {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.15) rotate(10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        .hero-photo-link:hover .hero-photo-wrapper {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #213555;
+            box-shadow: 0 6px 20px rgba(62, 88, 121, 0.4);
+        }
+
+        .hero-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         @keyframes fadeInUp {
@@ -129,7 +289,7 @@
             font-weight: 600;
             line-height: 1.2;
             margin-bottom: 1.5rem;
-            color: #2C2C2A;
+            color: #213555;
         }
 
         .hero-subtitle {
@@ -153,37 +313,57 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-decoration: none;
             display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
-            background: #71c9ce;
+            background: #3E5879;
             color: #ffffff;
-            box-shadow: 0 4px 12px rgba(113, 201, 206, 0.2);
+            box-shadow: 0 4px 12px rgba(62, 88, 121, 0.2);
         }
 
         .btn-primary:hover {
-            background: #5bb5ba;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(113, 201, 206, 0.3);
+            background: #213555;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(62, 88, 121, 0.35);
         }
 
         .btn-secondary {
             background: transparent;
-            color: #71c9ce;
-            border: 2px solid #71c9ce;
+            color: #3E5879;
+            border: 2px solid #3E5879;
         }
 
         .btn-secondary:hover {
-            background: rgba(113, 201, 206, 0.1);
+            background: rgba(62, 88, 121, 0.1);
             transform: translateY(-2px);
         }
 
         /* Sections */
         section {
-            padding: 6rem 2rem;
+            padding: 5rem 2rem;
         }
 
         .section-container {
@@ -193,21 +373,37 @@
 
         h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             font-weight: 600;
+            color: #213555;
             margin-bottom: 1rem;
-            color: #2C2C2A;
         }
 
         .section-subtitle {
             font-size: 1.125rem;
-            line-height: 1.7;
+            line-height: 1.8;
             color: #5F5E5A;
             margin-bottom: 3rem;
             max-width: 700px;
         }
 
-        /* What I Do Cards */
+        .text-center {
+            text-align: center;
+        }
+
+        .bg-white {
+            background: #ffffff;
+        }
+
+        .bg-gradient-light {
+            background: linear-gradient(180deg, #F5EFE7 0%, #ffffff 100%);
+        }
+
+        .bg-gradient-about {
+            background: linear-gradient(180deg, #ffffff 0%, #F5EFE7 100%);
+        }
+
+        /* Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -215,50 +411,62 @@
         }
 
         .card {
-            padding: 2rem;
             background: #ffffff;
-            border: 0.5px solid #cbf1f5;
+            padding: 2rem;
             border-radius: 12px;
-            transition: all 0.3s ease;
+            border: 1px solid #D8C4B6;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            position: relative;
         }
 
-        .card:nth-child(2) {
-            background: #e3fdfd;
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(62, 88, 121, 0.03), rgba(216, 196, 182, 0.03));
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(113, 201, 206, 0.15);
-            border-color: #71c9ce;
+            transform: translateY(-8px) rotateX(2deg) rotateY(2deg);
+            box-shadow: 0 12px 40px rgba(62, 88, 121, 0.15);
+            border-color: #3E5879;
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card h3 {
-            font-size: 1.5rem;
-            font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #213555;
             margin-bottom: 1rem;
-            color: #71c9ce;
         }
 
         .card p {
             font-size: 1rem;
             line-height: 1.7;
             color: #5F5E5A;
-            margin: 0;
         }
 
         /* Projects Section */
         .projects-embed {
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 2rem;
-            border: 0.5px solid #cbf1f5;
-            box-shadow: 0 4px 12px rgba(113, 201, 206, 0.08);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .projects-embed iframe {
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
             width: 100%;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
         }
 
         .projects-link {
@@ -267,68 +475,102 @@
             gap: 0.5rem;
             font-size: 1rem;
             font-weight: 500;
-            color: #71c9ce;
+            color: #3E5879;
             text-decoration: none;
             transition: all 0.3s ease;
         }
 
         .projects-link:hover {
-            color: #5bb5ba;
+            color: #213555;
             gap: 0.75rem;
+        }
+
+        .projects-link svg {
+            transition: transform 0.3s ease;
+        }
+
+        .projects-link:hover svg {
+            transform: translateX(4px);
         }
 
         /* Writing Section */
         .writing-grid {
             display: grid;
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
         }
 
         .writing-card {
-            display: block;
-            padding: 2rem;
             background: #ffffff;
-            border: 0.5px solid #cbf1f5;
-            border-left: 4px solid #71c9ce;
-            border-radius: 8px;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #D8C4B6;
             text-decoration: none;
-            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .writing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(62, 88, 121, 0.03), rgba(216, 196, 182, 0.03));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .writing-card:hover {
-            background: #e3fdfd;
-            transform: translateX(8px);
-            box-shadow: 0 8px 16px rgba(113, 201, 206, 0.12);
+            transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+            box-shadow: 0 12px 40px rgba(62, 88, 121, 0.15);
+            border-color: #3E5879;
+        }
+
+        .writing-card:hover::before {
+            opacity: 1;
         }
 
         .writing-card h3 {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: #2C2C2A;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: #213555;
         }
 
         .writing-meta {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.95rem;
-            color: #71c9ce;
+            font-size: 0.9rem;
             font-weight: 500;
+            color: #3E5879;
+        }
+
+        .writing-card:hover .writing-meta {
+            color: #213555;
+            gap: 0.75rem;
         }
 
         /* About Section */
         .about-card {
             background: #ffffff;
             padding: 3rem;
-            border-radius: 12px;
-            border: 0.5px solid #cbf1f5;
-            box-shadow: 0 4px 12px rgba(113, 201, 206, 0.08);
+            border-radius: 16px;
+            border: 1px solid #D8C4B6;
+            line-height: 1.9;
         }
 
         .about-card p {
-            font-size: 1.125rem;
-            line-height: 1.8;
+            font-size: 1.0625rem;
             color: #2C2C2A;
             margin-bottom: 1.5rem;
         }
@@ -338,8 +580,9 @@
         }
 
         .about-highlight {
-            color: #71c9ce;
             font-weight: 500;
+            color: #213555;
+            font-size: 1.125rem !important;
         }
 
         /* Contact Section */
@@ -349,8 +592,8 @@
 
         .contact-buttons {
             display: flex;
-            gap: 1.5rem;
             justify-content: center;
+            gap: 1rem;
             flex-wrap: wrap;
             margin-bottom: 3rem;
         }
@@ -359,80 +602,88 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.875rem 2rem;
+            padding: 0.875rem 1.5rem;
             font-size: 1rem;
             font-weight: 500;
-            text-decoration: none;
             border-radius: 8px;
-            transition: all 0.3s ease;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(62, 88, 121, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .contact-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .contact-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .contact-btn:hover svg {
+            transform: scale(1.2) rotate(5deg);
         }
 
         .contact-btn-primary {
-            background: #71c9ce;
+            background: #3E5879;
             color: #ffffff;
-            box-shadow: 0 4px 12px rgba(113, 201, 206, 0.2);
+            box-shadow: 0 4px 12px rgba(62, 88, 121, 0.2);
         }
 
         .contact-btn-primary:hover {
-            background: #5bb5ba;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(113, 201, 206, 0.3);
+            background: #213555;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(62, 88, 121, 0.35);
         }
 
         .contact-btn-secondary {
             background: transparent;
-            color: #71c9ce;
-            border: 2px solid #71c9ce;
+            color: #3E5879;
+            border: 2px solid #3E5879;
         }
 
         .contact-btn-secondary:hover {
-            background: rgba(113, 201, 206, 0.1);
-            transform: translateY(-2px);
+            background: rgba(62, 88, 121, 0.1);
+            transform: translateY(-3px) scale(1.02);
+            border-color: #213555;
+            color: #213555;
         }
 
         .contact-info {
-            padding: 2rem;
-            background: #e3fdfd;
-            border-radius: 12px;
-            border: 0.5px solid #cbf1f5;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .contact-info p {
             font-size: 1rem;
-            color: #5F5E5A;
-            margin: 0;
             line-height: 1.7;
+            color: #5F5E5A;
         }
 
         /* Footer */
         footer {
-            padding: 2rem;
-            background: #e3fdfd;
-            border-top: 0.5px solid #cbf1f5;
+            background: #213555;
+            color: #F5EFE7;
             text-align: center;
+            padding: 2rem;
         }
 
         footer p {
-            font-size: 0.95rem;
-            color: #5F5E5A;
-            margin: 0;
-        }
-
-        /* Backgrounds */
-        .bg-white {
-            background: #ffffff;
-        }
-
-        .bg-gradient-light {
-            background: linear-gradient(180deg, #ffffff 0%, #e3fdfd 100%);
-        }
-
-        .bg-gradient-about {
-            background: linear-gradient(180deg, #ffffff 0%, #e3fdfd 100%);
-        }
-
-        .text-center {
-            text-align: center;
+            font-size: 0.9rem;
         }
 
         /* Mobile Menu Toggle */
@@ -442,102 +693,88 @@
             border: none;
             cursor: pointer;
             padding: 0.5rem;
-            color: #71c9ce;
+            color: #3E5879;
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 1001;
         }
 
         .mobile-menu-toggle svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
         }
 
-        /* Responsive Styles */
-        
-        /* Tablets and small laptops */
-        @media (max-width: 1024px) {
-            .nav-container {
-                padding: 0 1.5rem;
-            }
-
-            h1 {
-                font-size: 3rem;
-            }
-
-            h2 {
-                font-size: 2.25rem;
-            }
-
-            .section-container {
-                padding: 0 1.5rem;
-            }
-        }
-
-        /* Tablets */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            /* Navigation */
-            .nav-container {
-                padding: 0 1.25rem;
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(245, 239, 231, 0.98);
+                backdrop-filter: blur(10px);
+                transition: right 0.3s ease;
+                box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+                padding: 5rem 2rem;
+            }
+
+            nav.active {
+                right: 0;
             }
 
             .nav-logo {
                 font-size: 1.25rem;
+                top: 1.5rem;
+                left: 1.5rem;
             }
 
             .mobile-menu-toggle {
                 display: block;
             }
 
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                max-width: 300px;
-                height: 100vh;
-                background: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                gap: 0;
-                padding: 5rem 2rem 2rem;
-                box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-                transition: right 0.3s ease;
-                z-index: 999;
+            .hero {
+                padding: 5rem 1.5rem 3rem;
             }
 
-            .nav-links.active {
-                right: 0;
+            .specialization-tag {
+                font-size: 0.75rem;
+                padding: 0.4rem 1rem;
             }
 
-            .nav-link {
-                width: 100%;
-                padding: 1rem 0;
-                border-bottom: 1px solid #e3fdfd;
-                font-size: 1rem;
-            }
-
-            .nav-link.active {
-                border-bottom: 1px solid #71c9ce;
-            }
-
-            /* Close button for mobile menu */
-            .nav-links::before {
-                content: '×';
-                position: absolute;
-                top: 1.5rem;
-                right: 1.5rem;
-                font-size: 2.5rem;
-                color: #71c9ce;
-                cursor: pointer;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            /* Typography */
             h1 {
                 font-size: 2rem;
-                line-height: 1.3;
+            }
+
+            .hero-photo-wrapper {
+                width: 60px;
+                height: 60px;
+                border-width: 2px;
+            }
+
+            .shape {
+                opacity: 0.3;
+            }
+
+            .shape-1 {
+                width: 100px;
+                height: 100px;
+            }
+
+            .shape-2 {
+                width: 70px;
+                height: 70px;
+            }
+
+            .shape-3 {
+                width: 60px;
+                height: 60px;
+            }
+
+            .shape-4 {
+                width: 80px;
+                height: 80px;
             }
 
             h2 {
@@ -545,208 +782,23 @@
             }
 
             .hero-subtitle {
-                font-size: 1.125rem;
+                font-size: 1.0625rem;
             }
 
-            .section-subtitle {
-                font-size: 1rem;
-            }
-
-            /* Hero Section */
-            .hero {
-                padding: 5rem 1.5rem 3rem;
-                min-height: 90vh;
-            }
-
-            /* Buttons */
-            .cta-buttons,
-            .contact-buttons {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.75rem;
-            }
-
-            .btn,
-            .contact-btn {
-                width: 100%;
-                text-align: center;
-                justify-content: center;
-            }
-
-            /* Cards */
-            .cards-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
-
-            /* Sections */
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .section-container {
-                padding: 0;
-            }
-
-            /* About card */
             .about-card {
                 padding: 2rem 1.5rem;
             }
 
-            .about-card p {
-                font-size: 1rem;
+            .contact-buttons {
+                flex-direction: column;
+                align-items: stretch;
             }
 
-            /* Contact */
-            .contact-info {
-                padding: 1.5rem;
-            }
-
-            .contact-info p {
-                font-size: 0.95rem;
-            }
-
-            /* Projects iframe */
-            .projects-embed iframe {
-                height: 250px;
-            }
-        }
-
-        /* Mobile phones */
-        @media (max-width: 480px) {
-            /* Navigation */
-            .nav-logo {
-                font-size: 1.1rem;
-            }
-
-            .nav-container {
-                padding: 0 1rem;
-            }
-
-            .nav-links {
-                width: 85%;
-                padding: 4.5rem 1.5rem 2rem;
-            }
-
-            /* Typography */
-            h1 {
-                font-size: 1.75rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            .card h3 {
-                font-size: 1.25rem;
-            }
-
-            .writing-card h3 {
-                font-size: 1.125rem;
-            }
-
-            /* Hero */
-            .hero {
-                padding: 4.5rem 1rem 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-
-            /* Sections */
-            section {
-                padding: 3rem 1rem;
-            }
-
-            /* Buttons */
-            .btn,
             .contact-btn {
-                padding: 0.75rem 1.5rem;
-                font-size: 0.95rem;
+                justify-content: center;
             }
 
-            /* Cards */
-            .card {
-                padding: 1.25rem;
-            }
-
-            .card h3 {
-                margin-bottom: 0.75rem;
-            }
-
-            .card p {
-                font-size: 0.95rem;
-            }
-
-            /* About */
-            .about-card {
-                padding: 1.5rem 1.25rem;
-            }
-
-            .about-card p {
-                font-size: 0.95rem;
-                margin-bottom: 1.25rem;
-            }
-
-            /* Contact */
-            .contact-btn svg {
-                width: 18px;
-                height: 18px;
-            }
-
-            .contact-info {
-                padding: 1.25rem;
-            }
-
-            .contact-info p {
-                font-size: 0.9rem;
-            }
-
-            /* Writing cards */
-            .writing-card {
-                padding: 1.5rem;
-            }
-
-            .writing-meta {
-                font-size: 0.875rem;
-            }
-
-            /* Projects */
-            .projects-embed {
-                padding: 1.5rem;
-            }
-
-            .projects-embed iframe {
-                height: 220px;
-            }
-
-            .projects-link {
-                font-size: 0.95rem;
-            }
-
-            /* Footer */
-            footer {
-                padding: 1.5rem 1rem;
-            }
-
-            footer p {
-                font-size: 0.875rem;
-            }
-        }
-
-        /* Very small phones */
-        @media (max-width: 360px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            h2 {
+            .nav-logo {
                 font-size: 1.375rem;
             }
 
@@ -779,9 +831,9 @@
             
             <div class="nav-links" id="navLinks">
                 <a href="#home" class="nav-link active" data-section="home">Home</a>
-                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-                <a href="#writing" class="nav-link" data-section="writing">Writing</a>
                 <a href="#about" class="nav-link" data-section="about">About</a>
+                <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+                <a href="#articles" class="nav-link" data-section="articles">Articles</a>
                 <a href="#contact" class="nav-link" data-section="contact">Contact</a>
             </div>
         </div>
@@ -789,15 +841,28 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+            <div class="shape shape-4"></div>
+        </div>
         <div class="hero-container">
-            <h1>I work at the intersection of psychology, UX, and social impact</h1>
+            <div class="specialization-tag">NGO Tech • Behavioral Research • Social Impact UX</div>
+            <h1>
+                I 
+                <a href="#about" class="hero-photo-link" title="Learn more about me">
+                    <span class="hero-photo-wrapper">
+                        <img src="https://via.placeholder.com/120x120/3E5879/ffffff?text=Photo" alt="Prajakta Pharande" class="hero-photo">
+                    </span>
+                </a>
+                work at the intersection of psychology, UX, and social impact
+            </h1>
             <p class="hero-subtitle">
                 Helping teams build thoughtful digital experiences grounded in real human behaviour.
             </p>
             <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View projects</a>
-                <a href="#writing" class="btn btn-secondary">Read writing</a>
-                <a href="#contact" class="btn btn-secondary">Contact me</a>
+                <a href="#contact" class="btn btn-primary">Contact me</a>
             </div>
         </div>
     </section>
@@ -820,6 +885,28 @@
                     <h3>Writing & Reflection</h3>
                     <p>Exploring ideas around psychology, design, behaviour, systems thinking, and social impact through long-form writing and project reflections.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-gradient-about">
+        <div class="section-container" style="max-width: 800px;">
+            <h2>About</h2>
+            <div style="height: 1rem;"></div>
+            <div class="about-card">
+                <p>
+                    A Psychology postgraduate and UX researcher — I want to use design and behavioral insights to create meaningful social impact.
+                </p>
+                <p>
+                    With a background spanning user research, UX design, organizational psychology, and mental health, I bring an interdisciplinary approach to understanding human behavior and translating insights into intuitive, empathy-driven, user-centered experiences.
+                </p>
+                <p class="about-highlight">
+                    I'm drawn to work that combines human understanding with meaningful systems change.
+                </p>
+                <p>
+                    Rather than approaching digital work only through technology, I'm interested in how products, processes, and experiences shape people's everyday realities — especially in spaces working toward social good.
+                </p>
             </div>
         </div>
     </section>
@@ -850,10 +937,10 @@
         </div>
     </section>
 
-    <!-- Writing Section -->
-    <section id="writing" class="bg-white">
+    <!-- Articles Section -->
+    <section id="articles" class="bg-white">
         <div class="section-container">
-            <h2>Writing</h2>
+            <h2>Articles</h2>
             <p class="section-subtitle">
                 Thoughts on psychology, user behaviour, NGO tech ecosystems, research, and the human side of digital experiences.
             </p>
@@ -889,28 +976,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="bg-gradient-about">
-        <div class="section-container" style="max-width: 800px;">
-            <h2>About</h2>
-            <div style="height: 1rem;"></div>
-            <div class="about-card">
-                <p>
-                    A Psychology postgraduate and UX researcher — I want to use design and behavioral insights to create meaningful social impact.
-                </p>
-                <p>
-                    With a background spanning user research, UX design, organizational psychology, and mental health, I bring an interdisciplinary approach to understanding human behavior and translating insights into intuitive, empathy-driven, user-centered experiences.
-                </p>
-                <p class="about-highlight">
-                    I'm drawn to work that combines human understanding with meaningful systems change.
-                </p>
-                <p>
-                    Rather than approaching digital work only through technology, I'm interested in how products, processes, and experiences shape people's everyday realities — especially in spaces working toward social good.
-                </p>
-            </div>
-        </div>
-    </section>
-
     <!-- Contact Section -->
     <section id="contact" class="bg-white" style="padding-bottom: 8rem;">
         <div class="section-container" style="max-width: 800px;">
@@ -939,11 +1004,12 @@
                         </svg>
                         Email
                     </a>
-                </div>
-                <div class="contact-info">
-                    <p>
-                        📍 Based in Kothrud, Pune | Currently exploring roles in UX Research, Behavioral Design, and Social Impact Consulting
-                    </p>
+                    <a href="https://alladwoman.substack.com/" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+                        </svg>
+                        Substack
+                    </a>
                 </div>
             </div>
         </div>
@@ -957,47 +1023,33 @@
     <script>
         // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navLinks = document.getElementById('navLinks');
+        const navbar = document.getElementById('navbar');
         const navLinkItems = document.querySelectorAll('.nav-link');
 
         // Toggle mobile menu
-        mobileMenuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close menu when clicking on the X (::before pseudo-element area)
-        navLinks.addEventListener('click', (e) => {
-            if (e.target === navLinks) {
-                navLinks.classList.remove('active');
-            }
-        });
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navbar.classList.toggle('active');
+            });
+        }
 
         // Close menu when clicking a nav link
         navLinkItems.forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+                navbar.classList.remove('active');
             });
         });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
-                navLinks.classList.remove('active');
+            if (navbar && !navbar.contains(e.target) && mobileMenuToggle && !mobileMenuToggle.contains(e.target)) {
+                navbar.classList.remove('active');
             }
         });
 
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-
+        // Update active nav link based on scroll position
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            // Update active nav link based on scroll position
-            const sections = ['home', 'projects', 'writing', 'about', 'contact'];
+            const sections = ['home', 'about', 'projects', 'articles', 'contact'];
             let current = '';
 
             sections.forEach(sectionId => {
