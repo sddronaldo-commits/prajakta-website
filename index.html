@@ -43,19 +43,25 @@
             flex-direction: column;
         }
 
+        /* Body */
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #2C2C2A;
+            line-height: 1.7;
+            background: #ffffff;
+        }
+
+        /* Logo */
         .nav-logo {
             font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
             font-weight: 600;
             color: #213555;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
             text-decoration: none;
             position: absolute;
             top: 2.5rem;
             left: 2.5rem;
+            z-index: 999;
         }
 
         .nav-links {
@@ -813,11 +819,12 @@
     </style>
 </head>
 <body>
+    <!-- Logo -->
+    <a href="#home" class="nav-logo">Prajakta Pharande</a>
+    
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#home" class="nav-logo">Prajakta Pharande</a>
-            
             <!-- Mobile Menu Toggle -->
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -849,7 +856,7 @@
                 I 
                 <a href="#about" class="hero-photo-link" title="Learn more about me">
                     <span class="hero-photo-wrapper">
-                        <img src="https://via.placeholder.com/120x120/3E5879/ffffff?text=Photo" alt="Prajakta Pharande" class="hero-photo">
+                        <img src="pp.jpg/120x120/3E5879/ffffff?text=Photo" alt="Prajakta Pharande" class="hero-photo">
                     </span>
                 </a>
                 work at the intersection of psychology, UX, and social impact
