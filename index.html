@@ -44,13 +44,6 @@
             display: flex;
             flex-direction: column;
         }
-        /* Body */
-        body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            color: #2C2C2A;
-            line-height: 1.7;
-            background: #ffffff;
-        }
         /* Logo */
         .nav-logo {
             font-family: 'Poppins', sans-serif;
@@ -107,7 +100,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             padding: 4rem 2rem;
             background: linear-gradient(135deg, #F5EFE7 0%, #ffffff 50%, #D8C4B6 100%);
             position: relative;
@@ -193,10 +186,11 @@
         }
         .hero-container {
             max-width: 900px;
+            width: 100%;
             margin: 0 auto;
             position: relative;
             z-index: 2;
-            text-align: center;
+            text-align: left;
         }
         .hero-container > * {
             opacity: 0;
@@ -215,55 +209,7 @@
         }
         .cta-buttons {
             animation: fadeInUp 1s ease forwards;
-            animation-delay: 1.8s;
-        }
-        /* Hero Photo */
-        .hero-photo-link {
-            display: inline-block;
-            text-decoration: none;
-            position: relative;
-            margin: 0 0.3rem;
-            vertical-align: middle;
-        }
-        .hero-photo-wrapper {
-            display: inline-block;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid #3E5879;
-            transition: all 0.3s ease;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(62, 88, 121, 0.3);
-            opacity: 0;
-            transform: scale(0);
-            animation: popOut 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-            animation-delay: 1.5s;
-        }
-        @keyframes popOut {
-            0% {
-                opacity: 0;
-                transform: scale(0.3);
-            }
-            60% {
-                opacity: 1;
-                transform: scale(1.08);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-        .hero-photo-link:hover .hero-photo-wrapper {
-            transform: scale(1.1) rotate(5deg);
-            border-color: #213555;
-            box-shadow: 0 6px 20px rgba(62, 88, 121, 0.4);
-        }
-        .hero-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+            animation-delay: 1.4s;
         }
         @keyframes fadeInUp {
             from {
@@ -288,15 +234,13 @@
             line-height: 1.8;
             color: #5F5E5A;
             margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            max-width: 620px;
         }
         .cta-buttons {
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
         }
         .btn {
             padding: 0.875rem 2rem;
@@ -524,6 +468,21 @@
             border: 1px solid #D8C4B6;
             line-height: 1.9;
         }
+        .about-photo-wrapper {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #3E5879;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 4px 16px rgba(62, 88, 121, 0.25);
+        }
+        .about-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
         .about-card p {
             font-size: 1.0625rem;
             color: #2C2C2A;
@@ -675,11 +634,6 @@
             h1 {
                 font-size: 2rem;
             }
-            .hero-photo-wrapper {
-                width: 60px;
-                height: 60px;
-                border-width: 2px;
-            }
             .shape {
                 opacity: 0.3;
             }
@@ -748,11 +702,12 @@
                 <a href="#home" class="nav-link active" data-section="home">Home</a>
                 <a href="#about" class="nav-link" data-section="about">About</a>
                 <a href="#projects" class="nav-link" data-section="projects">Projects</a>
-                <a href="#articles" class="nav-link" data-section="articles">Articles</a>
+                <a href="#articles" class="nav-link" data-section="articles">Writings & Reflections</a>
                 <a href="#contact" class="nav-link" data-section="contact">Contact</a>
             </div>
         </div>
     </nav>
+
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="floating-shapes">
@@ -763,23 +718,16 @@
         </div>
         <div class="hero-container">
             <div class="specialization-tag">NGO Tech • Behavioral Research • Social Impact UX</div>
-            <h1>
-                I 
-                <a href="#about" class="hero-photo-link" title="Learn more about me">
-                    <span class="hero-photo-wrapper">
-                        <img src="pp.jpg" alt="Prajakta Pharande" class="hero-photo">
-                    </span>
-                </a>
-                work at the intersection of psychology, UX, and social impact
-            </h1>
+            <h1>Hi, I am Prajakta.</h1>
             <p class="hero-subtitle">
-                Helping teams build thoughtful digital experiences grounded in real human behaviour.
+                I use psychology and behavioral insights to understand people and create more human-centered experiences.
             </p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary">Contact me</a>
             </div>
         </div>
     </section>
+
     <!-- What I Do Section -->
     <section class="bg-white">
         <div class="section-container">
@@ -801,27 +749,29 @@
             </div>
         </div>
     </section>
+
     <!-- About Section -->
     <section id="about" class="bg-gradient-about">
         <div class="section-container" style="max-width: 800px;">
             <h2>About</h2>
             <div style="height: 1rem;"></div>
             <div class="about-card">
+                <div class="about-photo-wrapper">
+                    <img src="pp.jpg" alt="Prajakta Pharande" class="about-photo">
+                </div>
                 <p>
-                    A Psychology postgraduate and UX researcher — I want to use design and behavioral insights to create meaningful social impact.
-                </p>
-                <p>
-                    With a background spanning user research, UX design, organizational psychology, and mental health, I bring an interdisciplinary approach to understanding human behavior and translating insights into intuitive, empathy-driven, user-centered experiences.
+                    I am Prajakta Pharande, a Psychology postgraduate working at the intersection of psychology, user experience, and social impact. I use psychology and user research methods to understand behavior, participation, and user experiences in social impact contexts.
                 </p>
                 <p class="about-highlight">
-                    I'm drawn to work that combines human understanding with meaningful systems change.
+                    I am drawn to work that combines human understanding with meaningful systems change.
                 </p>
                 <p>
-                    Rather than approaching digital work only through technology, I'm interested in how products, processes, and experiences shape people's everyday realities — especially in spaces working toward social good.
+                    Rather than approaching digital work only through technology, I am interested in how products, processes, and experiences shape people's everyday realities — especially in spaces working toward social good.
                 </p>
             </div>
         </div>
     </section>
+
     <!-- Projects Section -->
     <section id="projects" class="bg-gradient-light">
         <div class="section-container">
@@ -847,10 +797,11 @@
             </div>
         </div>
     </section>
-    <!-- Articles Section -->
+
+    <!-- Writings & Reflections Section -->
     <section id="articles" class="bg-white">
         <div class="section-container">
-            <h2>Articles</h2>
+            <h2>Writings & Reflections</h2>
             <p class="section-subtitle">
                 Thoughts on psychology, user behaviour, NGO tech ecosystems, research, and the human side of digital experiences.
             </p>
@@ -885,6 +836,7 @@
             </div>
         </div>
     </section>
+
     <!-- Contact Section -->
     <section id="contact" class="bg-white" style="padding-bottom: 8rem;">
         <div class="section-container" style="max-width: 800px;">
@@ -923,10 +875,12 @@
             </div>
         </div>
     </section>
+
     <!-- Footer -->
     <footer>
         <p>© 2026 Prajakta Pharande. Built with thoughtfulness.</p>
     </footer>
+
     <script>
         // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
